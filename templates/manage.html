@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>宠物信息管理</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h2>宠物信息管理</h2>
+
+        <!-- 创建宠物信息表单 -->
+        <h3>创建宠物信息</h3>
+        <form action="/create_pet" method="POST">
+            <label for="name">宠物名称</label>
+            <input type="text" id="name" name="name" required>
+            <button type="submit">创建</button>
+        </form>
+
+        <!-- 宠物列表 -->
+        <h3>宠物列表</h3>
+        <ul>
+            {% for pet in pets %}
+                <li>{{ pet.name }}
+                    <a href="/edit_pet/{{ pet.id }}">编辑</a>
+                    <a href="/delete_pet/{{ pet.id }}">删除</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>

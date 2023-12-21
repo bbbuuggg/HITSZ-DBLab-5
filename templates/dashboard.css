@@ -1,0 +1,66 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+h1 {
+    color: #333;
+}
+
+.pet-info {
+    border: 1px solid #333;
+    padding: 20px;
+    margin: 20px;
+    background-color: #f4f4f4;
+}
+
+.apply-form {
+    border: 1px solid #333;
+    padding: 20px;
+    margin: 20px;
+    background-color: #f4f4f4;
+}
+
+label {
+    display: block;
+    margin: 10px 0;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #555;
+}
+table {
+    width: 80%; /* 设置表格宽度为页面宽度的80% */
+    margin: 0 auto; /* 居中摆放表格 */
+    border-collapse: collapse; /* 合并单元格边框 */
+}
+
+table, th, td {
+    border: 1px solid white; /* 设置单元格边框为白色 */
+}
+
+table th, table td {
+    padding: 10px; /* 设置单元格内边距 */
+    text-align: center; /* 文本居中对齐 */
+}
+
+table {
+    background-color: lightblue; /* 设置表格背景颜色为浅蓝色 */
+}

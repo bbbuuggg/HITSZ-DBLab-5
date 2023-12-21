@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- 包含 Bootstrap 样式文件或链接 -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        table {
+        width: 80%; /* 设置表格宽度为页面宽度的80% */
+        margin: 0 auto; /* 居中摆放表格 */
+        border: 6px solid purple;
+        border-collapse: collapse; /* 合并单元格边框 */
+        }
+
+        table, th, td {
+            border: 5px solid orange;
+        }
+
+        table th, table td {
+            padding: 10px; /* 设置单元格内边距 */
+            text-align: center; /* 文本居中对齐 */
+        }
+
+        table {
+            background-color: wheat; /* 设置表格背景颜色为浅蓝色 */
+        }
+        .bold-orange-text {
+        color: brown;
+        font-weight: bold;
+        }   
+        button[type="submit"] {
+        margin: 20px auto;
+        padding: 10px 20px;
+        font-weight: bold;
+        background-color: rgba(200, 150, 255, 0.7);
+        border: none;
+        border-radius: 5px;
+        color: white;
+        display: block; /* 将按钮变为块级元素 */
+        margin-left: auto; /* 左外边距设置为自动 */
+        margin-right: auto; /* 右外边距设置为自动 */
+        text-align: center; /* 文本居中对齐 */
+        }
+        
+        a#logout-button {
+        position: absolute;
+        top: 10px;  /* 距离顶部的距离 */
+        right: 10px;  /* 距离右边的距离 */
+        text-decoration: none;
+        font-weight: bold;  /* 文本加粗 */
+        background-color: rgba(200, 150, 255, 0.7);
+        border: none;
+        border-radius: 50px;
+        color: white;
+        display: block; /* 将按钮变为块级元素 */
+        text-align: center; /* 文本居中对齐 */
+        }
+        @font-face {
+        font-family: 'Your Artistic Font';
+        src: url('path/to/your-font.woff') format('woff');
+        }
+        #add-pet-form label {
+        display: block; /* 将<label>元素显示为块级元素 */
+        margin: 0 auto; /* 居中对齐 */
+        }
+
+        #add-pet-form input {
+            width: 50%; /* 输入框宽度为父元素宽度的一半 */
+            background-color: rgb(230, 112, 129); /* 设置输入框背景颜色为淡紫色 */
+            border: 1px solid rgb(224, 108, 224); /* 输入框边框样式 */
+            color: whitesmoke; /* 设置文字颜色为深红色 */
+            padding: 5px; /* 设置输入框内边距 */
+            margin: 0 auto; /* 输入框居中对齐 */
+            display: block; /* 将输入框显示为块级元素 */
+        }
+
+        #add-pet-form button {
+            font-weight: bold;
+            background-color: rgba(200, 150, 255, 0.7);
+            border: none;
+            border-radius: 5px;
+            color: white;
+            display: block;
+            margin: 0 auto; /* 按钮居中对齐 */
+        }
+    </style>
+</head>
+<body style="background-color: rgb(223, 218, 211);">
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="admin_home-tab" data-toggle="tab" href="#application" role="tab" aria-controls="application" aria-selected="true">处理申请</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="pet-actions-tab" data-toggle="tab" href="#pet-actions" role="tab" aria-controls="add-pet" aria-selected="true">宠物信息</a>
+        </li>
+        <!-- 添加更多选项卡 -->
+    </ul>
+    <div class="tab-content" id="myTabContent" >
+        <div class="tab-pane fade show active" id="application" role="tabpanel" aria-labelledby="admin_home-tab">
+            <table class="bold-orange-text">
+                <thead>
+                    <tr>
+                        <th>用户名</th>
+                        <th>宠物ID</th>
+                        <th>地址ID</th>
+                        <th>姓名</th>
+                        <th>性别</th>
+                        <th>年龄</th>
+                        <th>电话</th>
+                        <th>邮箱</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for application in applications %}
+                    <tr>
+                        <td>{{ application.name }}</td>
+                        <td>{{ application.pet_id }}</td>
+                        <td>{{ application.add_id }}</td>
+                        <td>{{ application.application_user}}</td>
+                        <td>{{ application.gentle }}</td>
+                        <td>{{ application.age}}</td>
+                        <td>{{ application.phone}} </td>
+                        <td>{{ application.email}} </td>
+                    </tr>
+                    <tr>
+                        <td colspan="8">
+                            <form method="POST">
+                                <input type="hidden" name="application_id" value="{{ application.application_id }}">
+                                <label>审核结果:</label>
+                                <input type="radio" name="approval" value="approve"> 同意
+                                <input type="radio" name="approval" value="reject"> 拒绝
+                                <textarea name="reason" placeholder="拒绝理由"></textarea>
+                                <button type="submit" name="application">提交</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="tab-pane fade" id="pet-actions" role="tabpanel" aria-labelledby="pet-actions-tab" style="background-color: wheat;">
+            <h3 style="font-family: 'Arial', sans-serif; font-weight: bold; color: #ff6333;">宠物信息</h3>
+
+            <div class="accordion" id="pet-actions-accordion" >
+                <div class="card" style="background-color: wheat;">
+                    
+                    <table class="bold-orange-text">
+                        <thead>
+                            <tr>
+                                <th>宠物ID</th>
+                                <th>性格ID</th>
+                                <th>宠物名称</th>
+                                <th>宠物性别</th>
+                                <th>宠物生日</th>
+                                <th>宠物颜色</th>
+                                <!-- 在这里添加其他表头信息 -->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for pet in pets %}
+                            <tr>
+                                <td>{{ pet.pet_id }}</td>
+                                <td>{{ pet.nature_id }}</td>
+                                <td>{{ pet.pet_name }}</td>
+                                <td>{{ pet.pet_gentle }}</td>
+                                <td>{{ pet.birthday }}</td>
+                                <td>{{ pet.color }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-header" id="add-pet-heading">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link" data-toggle="collapse" data-target="#add-pet-form" aria-expanded="true" aria-controls="add-pet-form">
+                            新增宠物
+                        </button>
+                    </h5>
+                </div>
+    
+                <div id="add-pet-form" class="collapse" aria-labelledby="add-pet-heading" data-parent="#pet-actions-accordion">
+                    <div class="card-body">
+                        <form method="POST" id="add-pet-form" class="bold-orange-text">
+                            <label>宠物名:</label>
+                            <input type="text" name="pet_name" required><br>
+                
+                            <label>性别:</label>
+                            <input type="text" name="pet_gentle" required><br>
+                
+                            <label>生日:</label>
+                            <input type="date" name="birthday" required><br>
+                
+                            <label>颜色:</label>
+                            <input type="text" name="color" required><br>
+                
+                            <label>宠物品种 ID:</label>
+                            <input type="text" name="breeds_id" required><br>
+                
+                            <label>跟踪表 ID:</label>
+                            <input type="text" name="tra_id" required><br>
+                
+                            <label>宠物性格 ID:</label>
+                            <input type="text" name="nature_id" required><br>
+                
+                            <button type="submit" name="add_pet">添加宠物</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="card" style="background-color: wheat;">
+                    <div class="card-header" id="edit-pet-heading">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#edit-pet-form" aria-expanded="true" aria-controls="edit-pet-form">
+                                修改宠物信息
+                            </button>
+                        </h5>
+                    </div>
+                
+                    <div id="edit-pet-form" class="collapse" aria-labelledby="edit-pet-heading" data-parent="#pet-actions-accordion">
+                        <div class="card-body" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                            <form method="POST" id="edit-pet-form" class="bold-orange-text">
+                                <label>宠物ID:</label>
+                                <input type="text" name="pet_id" required><br>
+                            
+                                <label>修改项:</label>
+                                <input type="text" name="change_name" required><br>
+                                
+                                <label>内容（:</label>
+                                <input type="text" name="change_thing" required><br>
+
+                                <button type="submit" name="edit_pet">修改宠物信息</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="delete-pet-form">
+                    <div class="card-body" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                        <form method="POST" id="delete-pet-form" class="bold-orange-text" style="text-align: center;">
+                            <label>要删除的宠物ID:</label>
+                            <input type="text" name="delete_pet_id" required><br>
+                            <button type="submit" name="delete_pet">删除宠物</button>
+                        </form>
+                    </div>
+                </div>                
+            </div>
+        </div>
+        
+    </div>
+    <!-- 包含 Bootstrap JavaScript 文件或链接，以启用选项卡功能 -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

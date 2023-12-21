@@ -1,0 +1,30 @@
+{
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter",
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": true
+        },
+        "editor.formatOnSave": true,
+        
+    },
+    
+    "isort.args":["--profile", "black"],
+    "mypy-type-checker.importStrategy": "useBundled",
+    "mypy-type-checker.args": [
+        "--follow-imports=skip",
+        "--ignore-missing-imports",
+        "--show-column-numbers",
+        "--allow-untyped-defs",
+        "--allow-subclassing-any",
+        "--allow-untyped-calls",
+        "--no-warn-no-return"
+    ],
+    "pylint.importStrategy": "useBundled",
+    "pylint.args": [
+        "--disable=invalid-name,missing-module-docstring",
+        "--disable=W0612,W0631,W0703,W0621,W0613,W0611,W1308,C0411,C0111,C0103,C0301,C0304,C0305,E1101,R0913,R0914,R0915,R0903" ,
+    ],
+    "flake8.args": [
+        "--ignore=E203"
+    ]
+}

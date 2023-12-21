@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link type="text/css" rel="stylesheet" href="dashboard.css">
+    <style>
+        table {
+        width: 80%; /* 设置表格宽度为页面宽度的80% */
+        margin: 0 auto; /* 居中摆放表格 */
+        border: 6px solid purple;
+        border-collapse: collapse; /* 合并单元格边框 */
+        }
+
+        table, th, td {
+            border: 5px solid orange;
+        }
+
+        table th, table td {
+            padding: 10px; /* 设置单元格内边距 */
+            text-align: center; /* 文本居中对齐 */
+        }
+
+        table {
+            background-color: wheat; /* 设置表格背景颜色为浅蓝色 */
+        }
+        .bold-orange-text {
+        color: brown;
+        font-weight: bold;
+        }   
+        button[type="submit"] {
+        margin: 20px auto;
+        padding: 10px 20px;
+        font-weight: bold;
+        background-color: rgba(200, 150, 255, 0.7);
+        border: none;
+        border-radius: 5px;
+        color: white;
+        display: block; /* 将按钮变为块级元素 */
+        margin-left: auto; /* 左外边距设置为自动 */
+        margin-right: auto; /* 右外边距设置为自动 */
+        text-align: center; /* 文本居中对齐 */
+        }
+        
+        a#logout-button {
+        position: absolute;
+        top: 10px;  /* 距离顶部的距离 */
+        right: 10px;  /* 距离右边的距离 */
+        text-decoration: none;
+        font-weight: bold;  /* 文本加粗 */
+        background-color: rgba(200, 150, 255, 0.7);
+        border: none;
+        border-radius: 50px;
+        color: white;
+        display: block; /* 将按钮变为块级元素 */
+        text-align: center; /* 文本居中对齐 */
+        }
+
+    </style>
+</head>
+<body>
+    
+    <h1>宠物信息</h1>
+    <a id="logout-button" href="{{ url_for('logout') }}">登出</a>
+    <table class="bold-orange-text">
+        <thead>
+            <tr>
+                <th>宠物ID</th>
+                <th>性格ID</th>
+                <th>宠物名称</th>
+                <th>宠物性别</th>
+                <th>宠物生日</th>
+                <th>宠物颜色</th>
+                <!-- 在这里添加其他表头信息 -->
+            </tr>
+        </thead>
+        <tbody>
+            {% for pet in pets %}
+            <tr>
+                <td>{{ pet.pet_id }}</td>
+                <td>{{ pet.nature_id }}</td>
+                <td>{{ pet.pet_name }}</td>
+                <td>{{ pet.pet_gentle }}</td>
+                <td>{{ pet.birthday }}</td>
+                <td>{{ pet.color }}</td>
+                <!-- 在这里添加其他宠物信息 -->
+                <td>
+                    <a href="{{ url_for('dashboard', pet_id=pet.pet_id) }}">申请认领</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="apply-form">
+        <h2>申请认领宠物</h2>
+        <form  method="POST">
+            <!-- action="/apply" -->
+            <table>
+                <tr>
+                    <td>用户名</td>
+                    <td><input type="text" id="name" name="name" required></td>
+                </tr>
+                <tr>
+                    <td>宠物ID</td>
+                    <td><input type="text" id="pet_id" name="pet_id" required></td>
+                </tr>
+                <tr>
+                    <td>地址ID</td>
+                    <td><input type="text" id="add_id" name="add_id" required></td>
+                </tr>
+                <tr>
+                    <td>姓名</td>
+                    <td><input type="text" id="application_user" name="application_user" required></td>
+                </tr>
+                <tr>
+                    <td>性别</td>
+                    <td><input type="text" id="gentle" name="gentle" required></td>
+                </tr>
+                <tr>
+                    <td>年龄</td>
+                    <td><input type="text" id="age" name="age" required></td>
+                </tr>
+                <tr>
+                    <td>电话</td>
+                    <td><input type="text" id="phone" name="phone" required></td>
+                </tr>
+                <tr>
+                    <td>邮箱</td>
+                    <td><input type="text" id="email" name="email" required></td>
+                </tr>
+            </table>
+    
+            <button type="submit">提交申请</button>
+        </form>
+    </div>
+    
+</body>
+</html>

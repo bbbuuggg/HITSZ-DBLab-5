@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>登录界面</title>
+  <style>
+    body {
+      background: url('https://free.wzznft.com/i/2023/11/01/hah7yh.jpg') no-repeat;
+      background-size: cover;
+    }
+
+    #login_box {
+      width: 20%;
+      height: 400px;
+      background-color: #00000060;
+      margin: auto;
+      margin-top: 10%;
+      text-align: center;
+      border-radius: 10px;
+      padding: 50px 50px;
+    }
+
+    h2 {
+      color: #ffffff90;
+      margin-top: 5%;
+    }
+
+    #input-box {
+      margin-top: 5%;
+    }
+
+    span {
+      color: #fff;
+    }
+
+    input {
+      border: 0;
+      width: 60%;
+      font-size: 15px;
+      color: #fff;
+      background: transparent;
+      border-bottom: 2px solid #fff;
+      padding: 5px 10px;
+      outline: none;
+      margin-top: 10px;
+    }
+
+    button {
+      margin-top: 50px;
+      width: 60%;
+      height: 30px;
+      border-radius: 10px;
+      border: 0;
+      color: #fff;
+      text-align: center;
+      line-height: 30px;
+      font-size: 15px;
+      background-image: linear-gradient(to right, #30cfd0, #330867);
+    }
+
+    #sign_up {
+      margin-top: 45%;
+      margin-left: 60%;
+    }
+
+    a {
+      color: #b94648;
+    }
+    .white {
+            color: white;
+        }
+    .error-message{
+      margin: 20px auto;
+        padding: 10px 20px;
+        font-weight: bold;
+        background-color: rgba(200, 150, 255, 0.7);
+        border: none;
+        border-radius: 5px;
+        color: white;
+        display: block; /* 将按钮变为块级元素 */
+        margin-left: auto; /* 左外边距设置为自动 */
+        margin-right: auto; /* 右外边距设置为自动 */
+        text-align: center; /* 文本居中对齐 */
+    }
+  </style>
+</head>
+
+<body>
+  <div id="login_box">
+    <h2>LOGIN</h2>
+    <p class="error-message">{{ error_message }}</p>  <!-- 显示错误消息 -->
+      <form action="/login" method="POST">
+        <div id="input_box">
+          <label for="username"></label>
+          <input type="text" id="username" name="username" required>
+        </div>
+        <div class="input_box">
+          <label for="password"></label>
+          <input type="password" id="password" name="password" required>
+        </div>
+        <button type="submit">登录</button><br>
+      </form>
+    <p class="white">还没有账号？ <a href="/register">注册</a></p>
+  </div>
+</body>
+</html>
